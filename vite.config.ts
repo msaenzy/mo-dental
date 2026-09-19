@@ -5,13 +5,19 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    // Base path: configured for GitHub Pages repository deployment when run in GitHub Actions,
-    // or customizable via VITE_BASE / fallback to '/' in dev and AI Studio preview
-    base: process.env.VITE_BASE || (process.env.GITHUB_ACTIONS ? '/mo-dental-demo/' : '/'),
+    // Base path: dynamically resolves to the GitHub Pages repo name (e.g. /mo-dental/) in GitHub Actions,
+    // customizable via VITE_BASE or falling back to '/' in development and AI Studio preview
+    base:
+      process.env.VITE_BASE ||
+      (process.env.GITHUB_REPOSITORY
+        ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/`
+        : process.env.GITHUB_ACTIONS
+        ? '/mo-dental/'
+        : '/'),
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(import.meta.dirname || process.cwd(), '.'),
       },
     },
     server: {
