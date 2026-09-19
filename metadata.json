@@ -1,0 +1,6 @@
+{
+  "name": "MO Dental — Consultorio Odontológico",
+  "description": "Diseño de sonrisa con carillas, brackets autoligados y alineadores en Guayaquil. Diagnóstico personalizado con la Dra. María José Cabrera. Agenda tu valoración.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
